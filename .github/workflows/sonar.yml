@@ -4,14 +4,19 @@ on:
   push:
     branches:
       - master
+      - dev
   pull_request:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # removes Node.js warning
 
 jobs:
   sonar-scan:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v2
